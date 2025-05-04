@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Fish - Roblox Enhancer",
+  "version": "1.0",
+  "description": "Completely enhances Roblox UI, animations, and performance",
+  "content_scripts": [
+    {
+      "matches": ["*://www.roblox.com/*", "*://web.roblox.com/*"],
+      "js": [
+        "utils/roblox-api.js",
+        "utils/ui-enhancer.js",
+        "utils/animation-optimizer.js",
+        "content.js"
+      ],
+      "css": ["inject.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "Fish Roblox Enhancer"
+  },
+  "permissions": [
+    "storage",
+    "scripting",
+    "webNavigation"
+  ],
+  "host_permissions": [
+    "*://www.roblox.com/*",
+    "*://web.roblox.com/*"
+  ]
+}
