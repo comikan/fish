@@ -1,16 +1,28 @@
 {
   "manifest_version": 3,
-  "name": "Fish - Roblox Enhancer",
+  "name": "Fish - Advanced Roblox Enhancer",
   "version": "1.0.0",
-  "description": "Premium Roblox UI enhancement with pure CSS animations",
-  "permissions": ["storage", "activeTab", "scripting"],
-  "host_permissions": ["*://*.roblox.com/*"],
-  "action": {
-    "default_popup": "popup/popup.html"
-  },
+  "description": "Premium Roblox enhancement with API access and client injection",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "webRequest",
+    "webRequestBlocking"
+  ],
+  "host_permissions": [
+    "*://*.roblox.com/*",
+    "*://*.rbxcdn.com/*",
+    "*://*.roblox-api.com/*"
+  ],
   "content_scripts": [{
     "matches": ["*://*.roblox.com/*"],
     "css": ["content/styles.css"],
-    "js": ["content/main.js"]
+    "js": ["content/main.js"],
+    "run_at": "document_start"
+  }],
+  "web_accessible_resources": [{
+    "resources": ["injection/robloxInject.js"],
+    "matches": ["*://*.roblox.com/*"]
   }]
 }
