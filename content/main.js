@@ -131,3 +131,93 @@ if (document.readyState === 'complete') {
   window.addEventListener('load', enhanceRoblox);
   document.addEventListener('DOMContentLoaded', enhanceRoblox);
 }
+
+function sendClientCommand(command, data) {
+  return new Promise((resolve) => {
+    const requestId = Math.random().toString(36).substring(7);
+    
+    const listener = (event) => {
+      if (event.data.type === 'FISH_EXTENSION_RESPONSE' && 
+          event.data.requestId === requestId) {
+        window.removeEventListener('message', listener);
+        resolve(event.data.data);
+      }
+    };
+    
+    window.addEventListener('message', listener);
+    window.postMessage({
+      type: 'FISH_EXTENSION_COMMAND',
+      command,
+      data,
+      requestId
+    }, '*');
+  });
+}
+
+// Example usage:
+async function getPlayerData() {
+  try {
+    const playerData = await sendClientCommand('GET_PLAYER_DATA');
+    console.log('Fish: Player data', playerData);
+    return playerData;
+  } catch (e) {
+    console.error('Fish: Failed to get player data', e);
+    return null;
+  }
+}
+
+// Enhance specific game UI
+async function enhanceGameUI(placeId) {
+  console.log(`Fish: Enhancing game UI for place ${placeId}`);
+  
+  // Example: Add custom UI elements
+  const gameUI = document.querySelector('.game-ui-container');
+  if (gameUI) {
+    const fishPanel = document.createElement('div');
+    fishPanel.className = 'fish-game-panel';
+    fishPanel.innerHTML = `
+      <div class="fish-panel-header">
+        <h3>Fish Enhancement</h3>
+        <div class="fish-place-id">Place ID: ${placeId}</div>
+      </div>
+      <div class="fish-panel-content"></div>
+    `;
+    gameUI.appendChild(fishPanel);
+    
+    // Add custom styles
+    const style = document.createElement('style');
+    style.textContent = `
+      .fish-game-panel {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.7);
+        border: 1px solid rgba(0, 255, 255, 0.3);
+        border-radius: 8px;
+        padding: 10px;
+        color: white;
+        z-index: 1000;
+        backdrop-filter: blur(5px);
+      }
+      .fish-panel-header {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 5px;
+        margin-bottom: 5px;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+  
+  // Get player data and display it
+  const playerData = await getPlayerData();
+  if (playerData) {
+    const content = document.querySelector('.fish-panel-content');
+    if (content) {
+      content.innerHTML = `
+        <div>Player: ${playerData.Name}</div>
+        <div>Health: ${playerData.Health}</div>
+        <div>Position: ${JSON.stringify(playerData.Position)}</div>
+      `;
+    }
+  }
+}
