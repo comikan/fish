@@ -56,3 +56,58 @@ input:focus, textarea:focus, select:focus {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
+
+/* Roblox client specific enhancements */
+#application-container {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)) !important;
+}
+
+/* Enhanced game UI */
+.game-container {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transition: all 0.3s ease !important;
+}
+
+.game-container:hover {
+  transform: translateY(-5px) scale(1.02) !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Premium item styling */
+.item-card[data-premium="true"]::after {
+  content: "PREMIUM";
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: linear-gradient(to right, #ff8a00, #ff0058);
+  color: white;
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+/* Enhanced avatar editor */
+.avatar-editor-container {
+  backdrop-filter: blur(5px) !important;
+  background: rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Better chat interface */
+.chat-container {
+  background: rgba(0, 0, 0, 0.7) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 8px !important;
+}
+
+/* Game loading screen enhancements */
+.loading-screen {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364) !important;
+}
+
+.progress-bar {
+  background: linear-gradient(to right, #4facfe, #00f2fe) !important;
+  height: 4px !important;
+  border-radius: 2px !important;
+}
