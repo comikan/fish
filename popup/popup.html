@@ -1,75 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fish - Roblox Enhancer</title>
-  <link rel="stylesheet" href="popup.css">
+  <meta charset="utf-8">
+  <title>Fish Controls</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="popup.css" rel="stylesheet">
 </head>
 <body>
-  <div class="background-animation"></div>
-  
-  <div class="container">
-    <header class="header">
-      <div class="logo">
-        <i class="fas fa-fish"></i>
-        <h1>Fish</h1>
-      </div>
-      <div class="version">Premium</div>
-    </header>
-    
-    <div class="tabs">
-      <div class="tab active" data-tab="enhancements">
-        <i class="fas fa-magic"></i>
-        <span>Enhancements</span>
-      </div>
-      <div class="tab" data-tab="animations">
-        <i class="fas fa-film"></i>
-        <span>Animations</span>
-      </div>
-      <div class="tab" data-tab="settings">
-        <i class="fas fa-cog"></i>
-        <span>Settings</span>
-      </div>
+  <div class="fish-background"></div>
+  <div class="fish-container">
+    <div class="fish-header">
+      <h1><i class="fas fa-fish"></i> FISH</h1>
+      <p>Premium Roblox Enhancement</p>
     </div>
     
-    <div class="tab-content active" data-tab="enhancements">
-      <div class="feature-toggle">
+    <div class="fish-controls">
+      <div class="control-group">
         <label class="toggle-switch">
-          <input type="checkbox" checked>
-          <span class="slider"></span>
+          <input type="checkbox" id="ui-enhance" checked>
+          <span class="slider round"></span>
+          <span><i class="fas fa-paint-brush"></i> UI Enhancements</span>
         </label>
-        <div class="feature-info">
-          <h3>UI Modernization</h3>
-          <p>Enhanced Roblox interface with premium elements</p>
-        </div>
-        <i class="fas fa-chevron-right"></i>
       </div>
       
-      <!-- More feature toggles -->
-    </div>
-    
-    <div class="tab-content" data-tab="animations">
-      <!-- Animation settings -->
-    </div>
-    
-    <div class="tab-content" data-tab="settings">
-      <!-- Settings content -->
-    </div>
-    
-    <footer class="footer">
-      <div class="status">
-        <div class="status-indicator active"></div>
-        <span>Active on Roblox</span>
+      <div class="control-group">
+        <label class="toggle-switch">
+          <input type="checkbox" id="animations" checked>
+          <span class="slider round"></span>
+          <span><i class="fas fa-film"></i> Premium Animations</span>
+        </label>
       </div>
-      <button class="btn-premium">
-        <i class="fas fa-crown"></i>
-        Premium
+    </div>
+    
+    <div class="fish-footer">
+      <button class="fish-btn" id="settings-btn">
+        <i class="fas fa-cog"></i> Advanced
       </button>
-    </footer>
+    </div>
   </div>
-  
   <script src="popup.js"></script>
 </body>
 </html>
